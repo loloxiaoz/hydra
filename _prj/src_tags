@@ -1,0 +1,133 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+AccessAllow	../src/sys_api/interceptor.php	/^class  AccessAllow  extends XInterceptor$/;"	c
+AutoCommit	../src/sys_api/interceptor.php	/^ class AutoCommit  extends XInterceptor$/;"	c
+AutoCommit	../src/sys_web/interceptor.php	/^ class AutoCommit  extends XInterceptor$/;"	c
+Commander	../src/bizlogic/commander.php	/^class Commander$/;"	c
+ConsumeDemo	../src/sys_dispatch/proc.php	/^class ConsumeDemo implements HydraConsume$/;"	c
+DemoREST	../src/sys_api/services/demo.php	/^class DemoREST extends XSimpleService implements XService \/\/@REST_RULE: \/demo\/$uid$/;"	c
+DemoRuleREST	../src/sys_api/services/demo.php	/^class DemoRuleREST extends XRuleService implements XService \/\/@REST_RULE: \/demo\/rule\/$method$/;"	c
+Dispatcher	../src/sys_dispatch/dispatch.php	/^class Dispatcher$/;"	c
+Hero	../src/bizlogic/entitys.php	/^class Hero extends XEntity$/;"	c
+StateSvc	../src/sys_api/services/stats.php	/^class StateSvc extends XRuleService implements XService $/;"	c
+Subscriber	../src/bizlogic/subscriber.php	/^class Subscriber$/;"	c
+__construct	../src/bizlogic/commander.php	/^    public function __construct($subscriber)$/;"	f
+__construct	../src/bizlogic/subscriber.php	/^    public function  __construct($datafile=null) $/;"	f
+__construct	../src/sys_dispatch/dispatch.php	/^    public function __construct()$/;"	f
+_after	../src/sys_api/interceptor.php	/^     public function _after($xcontext,$request,$response)$/;"	f
+_after	../src/sys_api/interceptor.php	/^    public function _after($xcontext,$request,$response)$/;"	f
+_after	../src/sys_web/interceptor.php	/^     public function _after($xcontext,$request,$response)$/;"	f
+_before	../src/sys_api/interceptor.php	/^     public function _before($xcontext,$request,$response)$/;"	f
+_before	../src/sys_web/interceptor.php	/^     public function _before($xcontext,$request,$response)$/;"	f
+_get	../src/sys_api/services/demo.php	/^    public function _get($xcontext,$request,$response)$/;"	f
+_post	../src/sys_api/services/demo.php	/^    public function _post($xcontext,$request,$response)$/;"	f
+aps	../src/sys_api/interceptor.php	/^     static $aps=null;$/;"	v
+aps	../src/sys_init/sys_init.php	/^$aps = XAppSession::begin();$/;"	v
+aps	../src/sys_web/interceptor.php	/^     static $aps=null;$/;"	v
+begin	../src/sys_dispatch/dispatch.php	/^        $begin = microtime(true);$/;"	v
+bizCreate	../src/bizlogic/entitys.php	/^    static public function bizCreate($name)$/;"	f
+cancleCommit	../src/sys_api/interceptor.php	/^     public function cancleCommit()$/;"	f
+cancleCommit	../src/sys_web/interceptor.php	/^     public function cancleCommit()$/;"	f
+clear	../src/bizlogic/subscriber.php	/^    public function clear()$/;"	f
+clients	../src/bizlogic/subscriber.php	/^            $clients = $this->topics[$topic] ;$/;"	v
+clients	../src/bizlogic/subscriber.php	/^        $clients = array();$/;"	v
+clients	../src/bizlogic/subscriber.php	/^        $clients = array_unique($clients) ;$/;"	v
+cmd	../src/sys_dispatch/dispatch.php	/^                $cmd  = json_decode($data) ;$/;"	v
+cmdJob	../src/sys_dispatch/dispatch.php	/^            $cmdJob = $srcQ->reserveFromTube(HydraConf::TOPIC_CMD,0) ;$/;"	v
+cmds	../src/sys_api/services/stats.php	/^    \/\/ public function cmds($xcontext,$request,$response)$/;"	f
+collectorConfs	../src/sys_api/services/stats.php	/^        $collectorConfs = HydraConf::$queues ;$/;"	v
+collectorConfs	../src/sys_api/services/stats.php	/^    \/\/     $collectorConfs = HydraConf::$queues ;$/;"	v
+commitAndBegin	../src/sys_api/interceptor.php	/^     static public function commitAndBegin()$/;"	f
+commitAndBegin	../src/sys_web/interceptor.php	/^     static public function commitAndBegin()$/;"	f
+commonder	../src/sys_dispatch/main.php	/^$commonder  = new Commander($subscriber);$/;"	v
+conf	../src/sys_api/services/stats.php	/^            $conf             = HydraConfLoader::getSubConf($item) ;$/;"	v
+conf	../src/sys_dispatch/dispatch.php	/^        $conf = HydraConfLoader::getSubConf($topic);$/;"	v
+confs	../src/sys_dispatch/main.php	/^$confs      = Hydra::getSendConf();$/;"	v
+consume	../src/sys_dispatch/proc.php	/^    public function consume(HydraDTO $dto) $/;"	f
+count	../src/sys_dispatch/dispatch.php	/^        $count = 0 ;$/;"	v
+data	../src/bizlogic/subscriber.php	/^            $data = file_get_contents($this->dataFile) ;$/;"	v
+data	../src/bizlogic/subscriber.php	/^            $data = serialize($this->topics) ;$/;"	v
+data	../src/sys_api/services/stats.php	/^                $data             = $one->listTubes();$/;"	v
+data	../src/sys_api/services/stats.php	/^            $data             = $one->statsTube($item);$/;"	v
+data	../src/sys_api/services/stats.php	/^            $data = $one->stats();$/;"	v
+data	../src/sys_api/services/stats.php	/^            $data = $one->statsTube(HydraConf::TOPIC_EVENT);$/;"	v
+data	../src/sys_api/services/stats.php	/^    \/\/         $data = $one->listTubes();$/;"	v
+data	../src/sys_api/services/stats.php	/^    \/\/         \/\/ $data = $one->statsTube("__CMD__");$/;"	v
+data	../src/sys_api/services/stats.php	/^    \/\/         \/\/ $data = $one->statsTube(HydraConf::TOPIC_CMD);$/;"	v
+data	../src/sys_dispatch/dispatch.php	/^                $data    = $job->getData();$/;"	v
+data	../src/sys_dispatch/dispatch.php	/^                $data = $cmdJob->getData() ;$/;"	v
+dataFile	../src/bizlogic/subscriber.php	/^            $this->dataFile    = XEnv::get("DATA_PATH") . "\/subscribe.dat" ;$/;"	v
+dataFile	../src/bizlogic/subscriber.php	/^        $this->dataFile = $datafile ;$/;"	v
+dataObj	../src/sys_dispatch/dispatch.php	/^                $dataObj = json_decode($data) ;$/;"	v
+doCmd	../src/bizlogic/commander.php	/^    public function doCmd($cmd)$/;"	f
+doCmd	../src/sys_dispatch/dispatch.php	/^    public function doCmd($srcQ,$subscriber,$commander,$logger) $/;"	f
+doData	../src/sys_dispatch/dispatch.php	/^    public function doData($srcQ,$subscriber,$topic,$logger) $/;"	f
+dstQ	../src/sys_dispatch/dispatch.php	/^                    $dstQ     = self::subIns($dstTopic) ;$/;"	v
+dstTopic	../src/sys_dispatch/dispatch.php	/^                    $dstTopic = "$topic-$client" ;$/;"	v
+end	../src/sys_dispatch/dispatch.php	/^        $end     = microtime(true);$/;"	v
+events	../src/sys_api/services/stats.php	/^    public function events($xcontext,$request,$response)$/;"	f
+executer	../src/sys_api/bootstrap.php	/^\/\/ $executer = new LZLExecutor($host,$user,$pwd,$name,$/;"	v
+executer	../src/sys_dispatch/bootstrap.php	/^\/\/ $executer = new LZLExecutor($host,$user,$pwd,$name,$/;"	v
+executer	../src/sys_init/bootstrap.php	/^$executer = new LZLExecutor($host,$user,$pwd,$name,$/;"	v
+fun	../src/bizlogic/subscriber.php	/^        $fun = function ($c) use($client) {  return $c != $client ; } ;$/;"	v
+getIns	../src/sys_dispatch/dispatch.php	/^    static private function getIns($conf) $/;"	f
+help	../src/sys_api/services/demo.php	/^    public function help($xcontext,$request,$response)$/;"	f
+heroB	../src/sys_init/sys_init.php	/^$heroB          = Hero::bizCreate("erge") ;$/;"	v
+host	../src/sys_api/bootstrap.php	/^\/\/ $host     = XEnv::get("DB_HOST") ;$/;"	v
+host	../src/sys_dispatch/bootstrap.php	/^\/\/ $host     = XEnv::get("DB_HOST") ;$/;"	v
+host	../src/sys_init/bootstrap.php	/^$host     = XEnv::get("DB_HOST") ;$/;"	v
+ins	../src/sys_dispatch/dispatch.php	/^        $ins = new Pheanstalk_Pheanstalk($host, $port, HydraConf::$timeout);$/;"	v
+item	../src/sys_api/services/stats.php	/^        $item  = $request->item ;$/;"	v
+jid	../src/sys_dispatch/dispatch.php	/^                $jid     = $job->getId();$/;"	v
+job	../src/sys_dispatch/dispatch.php	/^            $job = $srcQ->reserveFromTube(HydraConf::TOPIC_EVENT,1) ;$/;"	v
+jobID	../src/sys_dispatch/dispatch.php	/^                    $jobID    = $dstQ->putInTube($dstTopic, $data);$/;"	v
+lists	../src/sys_api/services/demo.php	/^    public function lists($xcontext,$request,$response)$/;"	f
+load	../src/bizlogic/subscriber.php	/^    private function load() $/;"	f
+logger	../src/sys_dispatch/dispatch.php	/^        $logger = XLogKit::logger("dispatch")  ;$/;"	v
+logger	../src/sys_dispatch/proc.php	/^$logger= XLogKit::logger("perforce") ;$/;"	v
+name	../src/sys_api/bootstrap.php	/^\/\/ $name     = XEnv::get("DB_NAME") ;$/;"	v
+name	../src/sys_dispatch/bootstrap.php	/^\/\/ $name     = XEnv::get("DB_NAME") ;$/;"	v
+name	../src/sys_init/bootstrap.php	/^$name     = XEnv::get("DB_NAME") ;$/;"	v
+needCommit	../src/sys_api/interceptor.php	/^         $this->needCommit = false;$/;"	v
+needCommit	../src/sys_api/interceptor.php	/^     private $needCommit=true;$/;"	v
+needCommit	../src/sys_web/interceptor.php	/^         $this->needCommit = false;$/;"	v
+needCommit	../src/sys_web/interceptor.php	/^     private $needCommit=true;$/;"	v
+needStop	../src/sys_dispatch/proc.php	/^    public function needStop($job)$/;"	f
+obj	../src/bizlogic/entitys.php	/^        $obj = XEntity::createIns(__class__) ;$/;"	v
+one	../src/sys_api/services/stats.php	/^                $one              = new Pheanstalk_Pheanstalk($host, $port, HydraConf::$timeout) ;$/;"	v
+one	../src/sys_api/services/stats.php	/^            $one              = new Pheanstalk_Pheanstalk($host, $port, HydraConf::$timeout) ;$/;"	v
+one	../src/sys_api/services/stats.php	/^            $one  = new Pheanstalk_Pheanstalk($host, $port, HydraConf::$timeout) ;$/;"	v
+one	../src/sys_api/services/stats.php	/^    \/\/         $one  = new Pheanstalk_Pheanstalk($host, $port, HydraConf::$timeout) ;$/;"	v
+one	../src/sys_dispatch/main.php	/^$one        = new Dispatcher() ;$/;"	v
+pwd	../src/sys_api/bootstrap.php	/^\/\/ $pwd      = XEnv::get("DB_PWD" ) ;$/;"	v
+pwd	../src/sys_dispatch/bootstrap.php	/^\/\/ $pwd      = XEnv::get("DB_PWD" ) ;$/;"	v
+pwd	../src/sys_init/bootstrap.php	/^$pwd      = XEnv::get("DB_PWD" ) ;$/;"	v
+queues	../src/sys_api/services/stats.php	/^    public function queues($xcontext,$request,$response)$/;"	f
+queues	../src/sys_dispatch/dispatch.php	/^        static $queues = array() ;$/;"	v
+regist	../src/bizlogic/subscriber.php	/^    public function regist($topic,$client) $/;"	f
+save	../src/bizlogic/subscriber.php	/^    private function save()$/;"	f
+serving	../src/sys_dispatch/dispatch.php	/^    public function serving($src,$topic,$subscriber,$commander) $/;"	f
+srcQ	../src/sys_dispatch/dispatch.php	/^        $srcQ  = self::getIns($src) ;$/;"	v
+statsData	../src/sys_api/services/stats.php	/^        $statsData      = array();$/;"	v
+statsData	../src/sys_api/services/stats.php	/^    \/\/     $statsData      = array();$/;"	v
+subIns	../src/sys_dispatch/dispatch.php	/^    static private function subIns($topic) $/;"	f
+subs	../src/bizlogic/subscriber.php	/^    public function subs($topic) $/;"	f
+subs	../src/sys_api/services/stats.php	/^    public function subs($xcontext,$request,$response)$/;"	f
+subs	../src/sys_dispatch/dispatch.php	/^                $subs  = $subscriber->subs($topic) ;$/;"	v
+subs	../src/sys_dispatch/dispatch.php	/^        $subs  = array();$/;"	v
+subscriber	../src/bizlogic/commander.php	/^        $this->subscriber = $subscriber ;$/;"	v
+subscriber	../src/sys_dispatch/main.php	/^$subscriber = new Subscriber();$/;"	v
+subscribes	../src/sys_api/services/stats.php	/^        $subscribes     = HydraConf::subConfs() ;$/;"	v
+topic	../src/sys_dispatch/dispatch.php	/^                $topic = $dataObj->name ;$/;"	v
+topics	../src/bizlogic/subscriber.php	/^            $this->topics = unserialize($data) ;$/;"	v
+topics	../src/bizlogic/subscriber.php	/^        $this->topics = array();     $/;"	v
+topics	../src/bizlogic/subscriber.php	/^        $this->topics = array();$/;"	v
+unRegist	../src/bizlogic/subscriber.php	/^    public function unRegist($topic,$client) $/;"	f
+user	../src/sys_api/bootstrap.php	/^\/\/ $user     = XEnv::get("DB_USER") ;$/;"	v
+user	../src/sys_dispatch/bootstrap.php	/^\/\/ $user     = XEnv::get("DB_USER") ;$/;"	v
+user	../src/sys_init/bootstrap.php	/^$user     = XEnv::get("DB_USER") ;$/;"	v
+usetime	../src/sys_dispatch/dispatch.php	/^        $usetime = sprintf("%.3f", $end -$begin);$/;"	v

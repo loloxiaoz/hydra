@@ -1,0 +1,9 @@
+_dev:
+    - !C.project
+        name : "hydra"
+        root : "${HOME}/devspace/hydra"
+    - !C.version
+        file : "src/version.txt"
+    - !C.git
+        remote : "git@github.com:ayibang/hydra.git"
+
