@@ -10,10 +10,10 @@ _env:
 
     - !R.env
         _name    : "dev"
-        _mix :  "define,_local_deploy,_dev,base"
+        _mix :  "define,_local_deploy,_dev,base,speed_min,debug"
         _res :
             - !R.vars
-                BASE_DOMAIN : "hydra.${USER}.dev.mararun.cn"
+                BASE_DOMAIN : "hydra.${USER}.dev.mararun.com"
                 XCC_SDKS    : "${HOME}/devspace/xcc_sdks/src"
                 CONF_FILE   : "${PRJ_ROOT}/test/conf.json"
 
@@ -36,6 +36,7 @@ _env:
             - !R.vars
                 BASE_INCLUDE : "${SDKS_PATH}:${PRJ_ROOT}/src/bizlogic:${PRJ_ROOT}/src/foundation"
                 DATA_PATH    : "/data/${RUN_USER}/hydra"
+                PORT         : "80"
             - !R.path
                 dst  : "${DATA_PATH}"
                 keep : True
@@ -76,9 +77,9 @@ _sys:
             - !R.using
                 modul : "mara_api"
                 args  : !R.vars
-                    MOD_TAG     : "api"
-                    MOD_ENTRY   : "${PRJ_ROOT}/src/sys_${SYS_NAME}"
-                    MOD_INCLUDE : "${PRJ_ROOT}/src/sys_${SYS_NAME}:${BASE_INCLUDE}"
+                    API_ENTRY    : "${PRJ_ROOT}/src/sys_${SYS_NAME}"
+                    INCLUDE_PATH : "${PRJ_ROOT}/src/sys_${SYS_NAME}:${BASE_INCLUDE}"
+
 
     -  !R.system
         _name : "test"
