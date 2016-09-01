@@ -36,7 +36,7 @@ _env:
             - !R.vars
                 BASE_INCLUDE : "${SDKS_PATH}:${PRJ_ROOT}/src/bizlogic:${PRJ_ROOT}/src/foundation"
                 DATA_PATH    : "/data/${RUN_USER}/hydra"
-                PORT         : "80"
+                PORT         : "8086"
             - !R.path
                 dst  : "${DATA_PATH}"
                 keep : True

@@ -2,7 +2,7 @@
 
 class ConsumeDemo implements HydraConsume
 {
-    public function consume(HydraDTO $dto) 
+    public function consume(HydraDTO $dto)
     {
         XLogKit::logger("tc")->debug("job: done","subs-consume") ;
         echo "--------------------\n" ;
@@ -38,7 +38,7 @@ class HydraTest  extends PHPUnit_Framework_TestCase
 
         $subs->unRegist("event","B") ;
         $this->assertEquals($subs->subs("event"), ["A"]);
-        
+
     }
     public function testCmd()
     {
@@ -66,7 +66,7 @@ class HydraTest  extends PHPUnit_Framework_TestCase
         $logger= XLogKit::logger("tc") ;
         $consumer = new HydraSvc();
 
-        $consumer->subscribe("event","demo1",new ConsumeDemo);
+        $consumer->subscribe("event","demo1",new ConsumeDemo, XLogKit::logger("main"));
         sleep(1) ;
         Hydra::trigger("event","Hello") ;
         $consumer->serving($logger,1);

@@ -20,6 +20,7 @@ class StateSvc extends XRuleService implements XService
 
         foreach($subscribes as $conf )
         {
+            $conf = $conf['addr'] ;
             list($host,$port) = explode(':',$conf) ;
             $one  = new Pheanstalk_Pheanstalk($host, $port, HydraDefine::TIMEOUT) ;
             $data = $one->stats();
@@ -40,6 +41,7 @@ class StateSvc extends XRuleService implements XService
         {
             foreach($subscribes as $conf )
             {
+                $conf = $conf['addr'] ;
                 list($host,$port) = explode(':',$conf) ;
                 $one              = new Pheanstalk_Pheanstalk($host, $port, HydraDefine::TIMEOUT) ;
                 $data             = $one->listTubes();
