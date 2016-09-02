@@ -18,16 +18,19 @@ _env:
                 CONF_FILE   : "${PRJ_ROOT}/test/conf.json"
 
     - !R.env
-        _name    : "_demo"
+        _name    : "demo"
+        _mix :  "define,_local_deploy,_demo,base,speed_min,debug"
         _res :
             - !R.vars
                 BASE_DOMAIN : "hydra.demo.mararun.cn"
+                CONF_FILE   : "/data/x/etc/env_conf/xcc/sdks_conf.json.demo"
 
     - !R.env
         _name    : "_online"
         _res :
             - !R.vars
                 BASE_DOMAIN : "hydra.mararun.cn"
+                CONF_FILE   : "/data/x/etc/env_conf/xcc/sdks_conf.json.online"
 
     - !R.env
         _name : "base"

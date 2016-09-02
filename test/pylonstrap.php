@@ -1,3 +1,3 @@
 <?php
-HydraConfLoader::$conf_file = XSetting::ensureEnv("CONF_FILE");
+XConfLoader::registXCC("CONF_FILE") ;
 
