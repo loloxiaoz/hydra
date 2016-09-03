@@ -23,7 +23,6 @@ _env:
         _res :
             - !R.vars
                 BASE_DOMAIN : "hydra.demo.mararun.cn"
-                CONF_FILE   : "/data/x/etc/env_conf/xcc/sdks_conf.json.demo"
 
     - !R.env
         _name : "online"
@@ -31,13 +30,13 @@ _env:
         _res  :
             - !R.vars
                 BASE_DOMAIN : "hydra.mararun.cn"
-                CONF_FILE   : "/data/x/etc/env_conf/xcc/sdks_conf.json.online"
 
     - !R.env
         _name : "base"
         _mix  : "_base"
         _res  :
             - !R.vars
+                CONF_FILE   : "/data/x/etc/env_conf/conf/xcc/sdks_conf.json"
                 BASE_INCLUDE : "${SDKS_PATH}:${PRJ_ROOT}/src/bizlogic:${PRJ_ROOT}/src/foundation"
                 DATA_PATH    : "/data/${RUN_USER}/hydra"
                 PORT         : "8086"
