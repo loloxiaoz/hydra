@@ -1,6 +1,7 @@
 <?php
 require_once("init.php") ;
 
+use XCC\HydraConfLoader ;
 XSetting::logLevel("dispatch",XSetting::LOG_INFO_LEVEL) ;
 $one        = new Dispatcher() ;
 $confs      = HydraConfLoader::getCollectors();

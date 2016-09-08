@@ -1,6 +1,7 @@
 <?php
 
 
+use XCC\HydraDefine ;
 class Dispatcher
 {
     public function __construct()
