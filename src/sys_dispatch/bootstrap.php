@@ -1,4 +1,3 @@
 <?php
 
-use XCC\XConfLoader ;
-XConfLoader::registXCC("CONF_FILE") ;
+\XCC\XSdkEnv::init() ;
