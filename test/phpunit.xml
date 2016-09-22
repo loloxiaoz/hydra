@@ -8,4 +8,10 @@
 	  <log type="coverage-html" target="./report" charset="UTF-8" highlight="true"/>
 	</logging>
 
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">../src/</directory>
+        </whitelist>
+    </filter>
+
 </phpunit>
