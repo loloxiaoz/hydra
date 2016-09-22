@@ -98,10 +98,9 @@ class Dispatcher
     public function serving($src,$subscriber,$commander)
     {
         $logger = XLogKit::logger("dispatch")  ;
-        $logger->info("start serving for $topic@$src","dispatch") ;
+        $logger->info("start serving for $src","dispatch") ;
 
         $srcQ  = self::getIns($src) ;
-        $subs  = array();
         while(true)
         {
             $this->doCmd($srcQ,$subscriber,$commander,$logger) ;

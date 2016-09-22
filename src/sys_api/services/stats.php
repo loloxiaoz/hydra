@@ -31,7 +31,6 @@ class StateSvc extends XRuleService implements XService
 
     public function subs($xcontext,$request,$response)
     {
-        $collectorConfs = HydraConfLoader::getCollectors();
         $subscribes     = HydraConfLoader::getSubscibes();
         $statsData      = array();
         $item  = $request->item ;
@@ -63,7 +62,6 @@ class StateSvc extends XRuleService implements XService
     {
 
         $collectorConfs = HydraConfLoader::getCollectors();
-        $subscribes     = HydraConfLoader::getSubscibes();
         $statsData      = array();
 
         foreach($collectorConfs as $conf )
@@ -76,21 +74,4 @@ class StateSvc extends XRuleService implements XService
         $response->success($statsData);
     }
 
-    // public function cmds($xcontext,$request,$response)
-    // {
-    //
-    //     $collectorConfs = HydraConf::$queues ;
-    //     $statsData      = array();
-    //
-    //     foreach($collectorConfs as $conf )
-    //     {
-    //         list($host,$port) = explode(':',$conf) ;
-    //         $one  = new Pheanstalk_Pheanstalk($host, $port, HydraDefine::TIMEOUT) ;
-    //         // $data = $one->statsTube(HydraConf::TOPIC_CMD);
-    //         // $data = $one->statsTube("__CMD__");
-    //         $data = $one->listTubes();
-    //         $statsData[$conf] = $data ;
-    //     }
-    //     $response->success($statsData);
-    // }
 }

@@ -6,12 +6,12 @@ _env:
                 PRJ_NAME    : "hydra"
             - !R.include
                 _path :
-                    - "/data/x/tools/env_setting/env/mara_v1.yaml"
+                    - "/data/x/etc/mara_env/rigger/mara_v1.yaml"
 
     - !R.env
-        _name    : "dev"
-        _mix :  "define,_local_deploy,_dev,base,speed_min,debug"
-        _res :
+        _name : "dev"
+        _mix  : "define,_local_deploy,_dev,base"
+        _res  :
             - !R.vars
                 BASE_DOMAIN : "hydra.${USER}.dev.mararun.com"
                 XCC_SDKS    : "${HOME}/devspace/xcc_sdks/src"
@@ -19,14 +19,14 @@ _env:
 
     - !R.env
         _name    : "demo"
-        _mix :  "define,_project_deploy,_demo,base,speed_min,debug"
+        _mix :  "define,_project_deploy,_demo,base"
         _res :
             - !R.vars
                 BASE_DOMAIN : "hydra.demo.mararun.cn"
 
     - !R.env
         _name : "online"
-        _mix  : "define,_project_deploy,_online,base,speed_max,release"
+        _mix  : "define,_project_deploy,_online,base"
         _res  :
             - !R.vars
                 BASE_DOMAIN : "hydra.mararun.cn"
