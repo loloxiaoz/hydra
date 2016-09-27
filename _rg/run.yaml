@@ -22,14 +22,14 @@ _env:
         _mix :  "define,_project_deploy,_demo,base"
         _res :
             - !R.vars
-                BASE_DOMAIN : "hydra.demo.mararun.cn"
+                BASE_DOMAIN : "hydra.demo.mararun.com"
 
     - !R.env
         _name : "online"
         _mix  : "define,_project_deploy,_online,base"
         _res  :
             - !R.vars
-                BASE_DOMAIN : "hydra.mararun.cn"
+                BASE_DOMAIN : "hydra.mararun.com"
 
     - !R.env
         _name : "base"
@@ -37,9 +37,9 @@ _env:
         _res  :
             - !R.vars
                 CONF_FILE   : "/data/x/etc/env_conf/conf/xcc/sdks_conf.json"
-                BASE_INCLUDE : "${SDKS_PATH}:${PRJ_ROOT}/src/bizlogic:${PRJ_ROOT}/src/foundation"
+                BASE_INCLUDE : "${SDKS_PATH}:${PRJ_ROOT}/src/bizlogic:${PRJ_ROOT}/src/foundation:${PRJ_ROOT}/src/sys_common"
                 DATA_PATH    : "/data/${RUN_USER}/hydra"
-                PORT         : "8086"
+                PORT         : "80"
             - !R.path
                 dst  : "${DATA_PATH}"
                 keep : True

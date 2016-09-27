@@ -1,4 +1,6 @@
 <?php
+use XCC\HydraConfLoader ;
+use XCC\HydraDefine ;
 
 //@REST_RULE: /stats/$method,/stats/$method/$item
 class StateSvc extends XRuleService implements XService
