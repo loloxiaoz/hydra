@@ -6,14 +6,14 @@
      private $needCommit=true;
      public function _before($xcontext,$request,$response)
      {
-         self::$aps = XAppSession::begin();
+         static::$aps = XAppSession::begin();
          XLogKit::logger("main")->info("app session begin");
      }
      static public function commitAndBegin()
      {
-         self::$aps->commit();
-         self::$aps = null;
-         self::$aps = XAppSession::begin();
+         static::$aps->commit();
+         static::$aps = null;
+         static::$aps = XAppSession::begin();
      }
      public function cancleCommit()
      {
@@ -24,9 +24,9 @@
          if($this->needCommit)
          {
              XLogKit::logger("main")->info("app session commit");
-             self::$aps->commit();
+             static::$aps->commit();
          }
-         self::$aps=null;
+         static::$aps=null;
          $xcontext->_autocommit=null;
      }
  }
