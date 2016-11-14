@@ -1,6 +1,4 @@
 <?php
-
-
 use XCC\HydraDefine ;
 use XCC\HydraConfLoader ;
 class Dispatcher

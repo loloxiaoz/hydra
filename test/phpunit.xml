@@ -10,7 +10,8 @@
 
     <filter>
         <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">../src/</directory>
+            <directory suffix=".php">../src/bizlogic</directory>
+            <directory suffix=".php">../src/foundation</directory>
         </whitelist>
     </filter>
 

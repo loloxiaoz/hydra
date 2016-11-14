@@ -22,21 +22,27 @@ _env:
         _mix :  "define,_project_deploy,_demo,base"
         _res :
             - !R.vars
-                BASE_DOMAIN : "hydra.demo.mararun.com"
+                BASE_DOMAIN : "hydra.demo.mararun.cn"
+    - !R.env
+        _name    : "test"
+        _mix :  "define,_project_deploy,_test,base"
+        _res :
+            - !R.vars
+                BASE_DOMAIN : "hydra.demo.mararun.cn"
 
     - !R.env
         _name : "online"
         _mix  : "define,_project_deploy,_online,base"
         _res  :
             - !R.vars
-                BASE_DOMAIN : "hydra.mararun.com"
+                BASE_DOMAIN : "hydra.mararun.cn"
 
     - !R.env
         _name : "base"
         _mix  : "_base"
         _res  :
             - !R.vars
-                CONF_FILE   : "/data/x/etc/env_conf/conf/xcc/sdks_conf.json"
+                CONF_FILE    : "/data/x/etc/env_conf/conf/xcc/sdks_conf.json"
                 BASE_INCLUDE : "${SDKS_PATH}:${PRJ_ROOT}/src/bizlogic:${PRJ_ROOT}/src/foundation:${PRJ_ROOT}/src/sys_common"
                 DATA_PATH    : "/data/${RUN_USER}/hydra"
                 PORT         : "80"
@@ -44,8 +50,6 @@ _env:
                 dst  : "${DATA_PATH}"
                 keep : True
                 sudo : True
-
-
 
 _sys:
     -  !R.system
@@ -88,12 +92,7 @@ _sys:
         _name : "test"
         _res  :
             - !R.using
-                path  : "${RIGGER}/extends/moduls/pylon.yaml"
-                modul : "pylon_php"
+                modul : "mara_unit"
                 args  : !R.vars
-                    MOD_TAG     : "test"
-                    MOD_INCLUDE : "${PRJ_ROOT}/test:${BASE_INCLUDE}"
-            - !R.shell
-                script : "${PRJ_ROOT}/test/phpunit.sh"
-
+                    INCLUDE_PATH : "${PRJ_ROOT}/test:${BASE_INCLUDE}"
 

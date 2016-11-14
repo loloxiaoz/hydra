@@ -34,16 +34,16 @@ class HydraTest  extends PHPUnit_Framework_TestCase
         $file = XEnv::get("RUN_PATH") . "/subscriber.dat" ;
         $subs = new Subscriber($file);
         $subs->clear();
-        $subs->regist("event","A") ;
-        $this->assertEquals($subs->subs("event"), ["A"]);
+        $subs->regist("ping","A") ;
+        $this->assertEquals($subs->subs("ping"), ["A"]);
 
-        $subs->regist("event","B") ;
-        $this->assertEquals($subs->subs("event"), ["A","B"]);
-        $subs->regist("event","A") ;
-        $this->assertEquals($subs->subs("event"), ["A","B"]);
+        $subs->regist("ping","B") ;
+        $this->assertEquals($subs->subs("ping"), ["A","B"]);
+        $subs->regist("ping","A") ;
+        $this->assertEquals($subs->subs("ping"), ["A","B"]);
 
-        $subs->unRegist("event","B") ;
-        $this->assertEquals($subs->subs("event"), ["A"]);
+        $subs->unRegist("ping","B") ;
+        $this->assertEquals($subs->subs("ping"), ["A"]);
 
     }
     public function testCmd()
@@ -55,13 +55,13 @@ class HydraTest  extends PHPUnit_Framework_TestCase
         $obj         = new HydraCmd() ;
         $obj->cmd    = "subscribe" ;
         $obj->client = "A" ;
-        $obj->topic  = "event" ;
+        $obj->topic  = "ping" ;
 
         $commander->doCmd($obj);
 
         $obj->cmd    = "unsubscribe" ;
         $commander->doCmd($obj);
-        $this->assertEquals($subs->subs("event"), []);
+        $this->assertEquals($subs->subs("ping"), []);
 
     }
     public function testMain()
@@ -72,9 +72,9 @@ class HydraTest  extends PHPUnit_Framework_TestCase
         $logger= XLogKit::logger("tc") ;
         $consumer = new HydraSvc();
 
-        $consumer->subscribe("event","demo1",new ConsumeDemo, XLogKit::logger("main"));
+        $consumer->subscribe("ping","demo1",new ConsumeDemo, XLogKit::logger("main"));
         sleep(1) ;
-        Hydra::trigger("event","Hello") ;
+        Hydra::trigger("ping","Hello") ;
         $consumer->serving($logger,1);
 
     }

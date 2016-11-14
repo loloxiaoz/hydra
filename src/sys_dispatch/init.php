@@ -1,5 +1,6 @@
 <?php
 include "pylon/pylon.php" ;
+
 // XSetting::$logMode   = XSetting::LOG_DEBUG_MODE ;
 XSetting::$logMode   = XSetting::LOG_ONLINE_MODE ;
 XSetting::$prjName   = "hydra" ;
