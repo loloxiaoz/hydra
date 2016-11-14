@@ -56,11 +56,12 @@ class HydraTest  extends PHPUnit_Framework_TestCase
         $obj->cmd    = "subscribe" ;
         $obj->client = "A" ;
         $obj->topic  = "ping" ;
+        $stat = new EmptyStat() ;
 
-        $commander->doCmd($obj);
+        $commander->doCmd($obj,$stat);
 
         $obj->cmd    = "unsubscribe" ;
-        $commander->doCmd($obj);
+        $commander->doCmd($obj,$stat );
         $this->assertEquals($subs->subs("ping"), []);
 
     }
