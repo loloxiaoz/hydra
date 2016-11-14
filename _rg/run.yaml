@@ -4,6 +4,7 @@ _env:
         _res :
             - !R.vars
                 PRJ_NAME    : "hydra"
+                DEPLOY_PATH : "/data/x/svcs"
             - !R.include
                 _path :
                     - "/data/x/etc/mara_env/rigger/mara_v1.yaml"
@@ -19,20 +20,20 @@ _env:
 
     - !R.env
         _name    : "demo"
-        _mix :  "define,_project_deploy,_demo,base"
+        _mix :  "define,_diy_deploy,_demo,base"
         _res :
             - !R.vars
                 BASE_DOMAIN : "hydra.demo.mararun.cn"
     - !R.env
         _name    : "test"
-        _mix :  "define,_project_deploy,_test,base"
+        _mix :  "define,_diy_deploy,_test,base"
         _res :
             - !R.vars
                 BASE_DOMAIN : "hydra.demo.mararun.cn"
 
     - !R.env
         _name : "online"
-        _mix  : "define,_project_deploy,_online,base"
+        _mix  : "define,_diy_deploy,_online,base"
         _res  :
             - !R.vars
                 BASE_DOMAIN : "hydra.mararun.cn"
