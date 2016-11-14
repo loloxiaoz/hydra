@@ -25,7 +25,7 @@ class Dispatcher
         $ins = new Pheanstalk_Pheanstalk($host, $port, HydraDefine::TIMEOUT);
         return $ins ;
     }
-    public function doCmd($srcQ,$subscriber,$commander,$logger)
+    public function doCmd($srcQ,$subscriber,$commander,$logger,$stat)
     {
         while(true)
         {
@@ -34,7 +34,7 @@ class Dispatcher
             {
                 $data = $cmdJob->getData() ;
                 $cmd  = json_decode($data) ;
-                $commander->doCmd($cmd);
+                $commander->doCmd($cmd,$stat);
                 $logger->info("cmd: $data","dispatch") ;
                 $srcQ->delete($cmdJob) ;
             }
@@ -47,7 +47,7 @@ class Dispatcher
 
     }
 
-    public function doData($srcQ,$subscriber,$logger)
+    public function doData($srcQ,$subscriber,$logger,$stat)
     {
         $count = 0 ;
         $begin = microtime(true);
@@ -68,6 +68,7 @@ class Dispatcher
                     continue ;
                 }
                 $topic = $dataObj->name ;
+                $stat->stat($topic);
                 $subs  = $subscriber->subs($topic) ;
                 foreach($subs as $client)
                 {
@@ -99,10 +100,11 @@ class Dispatcher
         $logger->info("start serving for $src","dispatch") ;
 
         $srcQ  = self::getIns($src) ;
+        $stat  = new SentryStat();
         while(true)
         {
-            $this->doCmd($srcQ,$subscriber,$commander,$logger) ;
-            $this->doData($srcQ,$subscriber,$logger) ;
+            $this->doCmd($srcQ,$subscriber,$commander,$logger,$stat) ;
+            $this->doData($srcQ,$subscriber,$logger,$stat) ;
 
         }
         $logger->info("end serving ","dispatch") ;

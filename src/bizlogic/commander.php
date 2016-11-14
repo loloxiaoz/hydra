@@ -6,16 +6,18 @@ class Commander
     {
         $this->subscriber = $subscriber ;
     }
-    public function doCmd($cmd)
+    public function doCmd($cmd,$stat)
     {
         if( $cmd->cmd == "subscribe")
         {
             $this->subscriber->regist($cmd->topic,$cmd->client) ;
+            $stat->stat("subscribe_" . $cmd->topic, $cmd->client) ;
 
         }
         if( $cmd->cmd == "unsubscribe")
         {
             $this->subscriber->unRegist($cmd->topic,$cmd->client) ;
+            $stat->stat("unsubscribe_" . $cmd->topic,$cmd->client) ;
         }
     }
 }

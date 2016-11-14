@@ -5,7 +5,7 @@ _dev:
     - !C.version
         file : "src/version.txt"
     - !C.git
-        remote : "git@github.com:ayibang/hydra.git"
+        remote : "git@git.mararun.com:mara/hydra.git"
     - !C.sonar
         runner   : "/data/sonar-scanner/bin/sonar-scanner"
         qube     : "http://10.26.101.134:9000"
