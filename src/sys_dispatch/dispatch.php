@@ -100,7 +100,7 @@ class Dispatcher
         $logger->info("start serving for $src","dispatch") ;
 
         $srcQ  = self::getIns($src) ;
-        $stat  = HydraSetting::get_stat();
+        $stat  = XCC\XCCSetting::get_stat();
         while(true)
         {
             $this->doCmd($srcQ,$subscriber,$commander,$logger,$stat) ;

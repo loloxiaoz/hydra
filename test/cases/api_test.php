@@ -56,7 +56,7 @@ class HydraTest  extends PHPUnit_Framework_TestCase
         $obj->cmd    = "subscribe" ;
         $obj->client = "A" ;
         $obj->topic  = "ping" ;
-        $stat = new EmptyStat() ;
+        $stat = XCC\XCCSetting::get_stat();
 
         $commander->doCmd($obj,$stat);
 

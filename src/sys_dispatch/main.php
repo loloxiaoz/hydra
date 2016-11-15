@@ -2,7 +2,6 @@
 require_once("init.php") ;
 use XCC\HydraConfLoader ;
 XCC\XSdkEnv::init();
-HydraSetting::set_stat(new SentryStat()) ;
 $one        = new Dispatcher() ;
 $confs      = HydraConfLoader::getCollectors();
 $subscriber = new Subscriber();

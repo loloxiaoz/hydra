@@ -37,7 +37,6 @@ _env:
         _res  :
             - !R.vars
                 BASE_DOMAIN : "hydra.mararun.cn"
-                SENTRY_DSN  : "http://3601a9de29754eeb992ca29b12a94396:6df7f14a75024a0bbd7ad413b519b26a@sentry.mararun.cn/8"
 
 
     - !R.env
@@ -49,7 +48,6 @@ _env:
                 BASE_INCLUDE : "${SDKS_PATH}:${PRJ_ROOT}/src/bizlogic:${PRJ_ROOT}/src/foundation:${PRJ_ROOT}/src/sys_common:${MARA_LIBS}"
                 DATA_PATH    : "/data/${RUN_USER}/hydra"
                 PORT         : "80"
-                SENTRY_DSN   : "http://a846ab3cb69d47e98ca528211d6e7e13:142174c3e27f4e148b9b4e505e33d26a@sentry.mararun.cn/9"
             - !R.path
                 dst  : "${DATA_PATH}"
                 keep : True
