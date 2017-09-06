@@ -68,7 +68,6 @@ class Dispatcher
                     continue ;
                 }
                 $topic = $dataObj->name ;
-                $stat->stat($topic);
                 $subs  = $subscriber->subs($topic) ;
                 foreach($subs as $client)
                 {
@@ -100,7 +99,6 @@ class Dispatcher
         $logger->info("start serving for $src","dispatch") ;
 
         $srcQ  = self::getIns($src) ;
-        $stat  = XCC\XCCSetting::get_stat();
         while(true)
         {
             $this->doCmd($srcQ,$subscriber,$commander,$logger,$stat) ;
