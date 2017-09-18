@@ -40,7 +40,6 @@ class Dispatcher
             }
             else
             {
-                // $logger->debug("no cmd job","dispatch") ;
                 break;
             }
         }
