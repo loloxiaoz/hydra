@@ -20,9 +20,21 @@ class Subscriber
         $this->topics   = array();
         $this->dataFile = $datafile;
         if(empty($datafile)){
-            $this->dataFile = XEnv::get("DATA_PATH") . "/subscribe.dat";
+            $this->dataFile = $_SERVER["DATA_PATH"] . "/subscribe.dat";
         }
         $this->load();
+    }
+
+    public function regist($topic, $client)
+    {
+        $clients = array();
+        if(isset($this->topics[$topic])){
+            $clients = $this->topics[$topic];
+        }
+        array_push($clients,$client);
+        $clients = array_unique($clients);
+        $this->topics[$topic] = $clients;
+        $this->save();
     }
 
     public function unRegist($topic, $client)
@@ -41,18 +53,6 @@ class Subscriber
     public function clear()
     {
         $this->topics = array();
-        $this->save();
-    }
-
-    public function regist($topic, $client)
-    {
-        $clients = array();
-        if(isset($this->topics[$topic])){
-            $clients = $this->topics[$topic];
-        }
-        array_push($clients,$client);
-        $clients = array_unique($clients);
-        $this->topics[$topic] = $clients;
         $this->save();
     }
 

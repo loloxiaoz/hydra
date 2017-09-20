@@ -18,7 +18,7 @@ class Hydra
         }
         $events = ConfLoader::getEvents();
         if(!in_array($topic,$events)){
-            throw new \RuntimeException("Hydra not support this event: $topic");
+            throw new \RuntimeException("not support this event: $topic");
         }
         if(empty($impl)){
             $impl = new BStalk(static::$logger);

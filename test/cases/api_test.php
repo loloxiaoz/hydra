@@ -5,7 +5,7 @@ use XCC\HydraCmd ;
 use XCC\HydraSvc ;
 use XCC\Hydra ;
 
-class ConsumeDemo implements HydraConsume
+class ConsumeDemo implements Consume
 {
     public function consume(MsgDTO $dto)
     {
@@ -51,7 +51,7 @@ class HydraTest  extends PHPUnit_Framework_TestCase
         $subs        = new Subscriber($file);
         $subs->clear();
         $commander   = new Commander($subs);
-        $obj         = new HydraCmd() ;
+        $obj         = new Cmd() ;
         $obj->cmd    = "subscribe" ;
         $obj->client = "A" ;
         $obj->topic  = "ping" ;

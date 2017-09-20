@@ -4,23 +4,32 @@ namespace Hydra;
 
 class BStalk implements ICollector, IConsumer
 {
-    public function trigger($topic, $data, $logger, $delay=0, $ttl=60)
+    private $logger;
+
+    public function __construct(ILogger $logger)
     {
-        for($i=0; $i<2; $i++){
+        $this->logger = $logger;
+    }
+
+    public function trigger($topic, $data, $delay=0, $ttl=60)
+    {
+        $count = Constants::RETRY_COUNT;
+        while($count>0){
             try{
-                $Q     = self::rollIns();
+                $Q     = static::rollCollectIns();
                 $jobId = $Q->putInTube($topic, $data, $priority=1024, $delay, $ttl);
-                $logger->debug("send $jobId @$topic");
+                $this->logger->debug("send $jobId @$topic");
                 return $jobId;
             }catch(Pheanstalk_Exception_ConnectionException $e){
-                $logger->error($e->getMessage) ;
+                $this->logger->error($e->getMessage,__method__);
             }
+            $count--;
         }
     }
 
-    public function cmd(HydraCmd $cmdObj, $logger)
+    public function cmd(Cmd $cmdObj)
     {
-        $queues = self::collectorsIns();
+        $queues = static::collectorsIns();
         $cmd    = get_object_vars($cmdObj);
         $bSuc   = false ;
         foreach($queues as $Q){
@@ -28,11 +37,11 @@ class BStalk implements ICollector, IConsumer
                 $Q->putInTube(Constants::TOPIC_CMD, json_encode($cmd) );
                 $bSuc = true ;
             }catch(Pheanstalk_Exception_ConnectionException $e){
-                $logger->error($e->getMessage()) ;
+                $this->logger->error($e->getMessage(),__method__) ;
             }
         }
         if(!$bSuc){
-            throw new RuntimeException("send hydra cmd fail!") ;
+            throw new \RuntimeException("send cmd fail!") ;
         }
     }
 
@@ -46,17 +55,17 @@ class BStalk implements ICollector, IConsumer
                 try {
                     array_push($queues ,new \Pheanstalk_Pheanstalk($host, $port, Constants::TIMEOUT));
                 }catch(\Pheanstalk_Exception_ConnectionException $e){
-                    echo $e->getMessage();
+                    $this->logger->error($e->getMessage(),__method__) ;
                 }
             }
         }
         return $queues;
     }
 
-    static private function rollIns()
+    static private function rollCollectIns()
     {
         static $index = 0;
-        $queues = self::collectorsIns();
+        $queues = static::collectorsIns();
         $ins    = $queues[$index];
         $index++;
         if($index >= count($queues)){
@@ -65,11 +74,11 @@ class BStalk implements ICollector, IConsumer
         return $ins;
     }
 
-    static private function subIns($topic, $logger)
+    static private function subIns($topic)
     {
         static $queues = array();
         $conf          = ConfLoader::getSubConf($topic);
-        $logger->debug("topic [$topic] use $conf");
+        $this->logger->debug("topic [$topic] use $conf");
         if(!isset($queues[$conf])){
             list($host,$port) = explode(':', $conf);
             $queues[$conf]    = new \Pheanstalk_Pheanstalk($host, $port, Constants::TIMEOUT);
@@ -77,31 +86,31 @@ class BStalk implements ICollector, IConsumer
         return $queues[$conf] ;
     }
 
-    public function consume($topic, $workFun, $stopFun, $logger, $timeout=5)
+    public function consume($topic, $workFun, $stopFun, $timeout=5)
     {
         $tag   = "consume@$topic";
-        $Q     = self::subIns($topic, $logger);
+        $Q     = static::subIns($topic);
         while(true){
-            $logger->info("watch $topic", "consume");
+            $this->logger->info("watch $topic", "consume");
             $job    = $Q->watch($topic)->ignore('default')->reserve($timeout);
             $result = false;
             if(is_callable($stopFun) && call_user_func($stopFun,$job) == true ){
                 return;
             }
             if(!$job){
-                $logger->debug("no job ", $tag);
+                $this->logger->debug("no job ", $tag);
                 continue;
             }
             $jId  = $job->getId();
             $data = $job->getData();
-            $logger->debug("get job: $jId", $tag);
+            $this->logger->debug("get job: $jId", $tag);
             try{
                 $result = call_user_func($workFun, $data);
             }catch(Exception $e){
-                $logger->warn("job failed: " . $e->getMessage(), $tag);
+                $this->logger->warn("job failed: " . $e->getMessage(), $tag);
             }
             if($result === true){
-                $logger->info("job[$jId] proc suc!", $tag);
+                $this->logger->info("job[$jId] proc suc!", $tag);
                 $Q->delete($job);
             }else{
                 $Q->release($job, 1024, Constants::RETRY_TIME);

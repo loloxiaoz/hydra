@@ -8,6 +8,7 @@ class Constants
 
     const TIMEOUT       = 500;  //超时时间
     const RETRY_TIME    = 10;   //重试时间
+    const RETRY_COUNT   = 2;    //重试次数
 }
 
 class Cmd
@@ -24,7 +25,7 @@ interface ICollector
 
 interface IConsumer
 {
-    public function cmd(HydraCmd $cmd, $logger);
+    public function cmd(Cmd $cmd, $logger);
     public function consume($topic, $workFun, $stopFun, $logger, $timeout=5);
 }
 

@@ -23,8 +23,6 @@ class HydraSvc
 
     public function serving($logger = null ,$timeout = 5  )
     {
-        if(empty($logger)) $logger = new HydraEmptyLogger();
-
         $topic      = $this->consumeTopic ;
         $consumeObj = $this->consumeObj ;
         $tag        = "consume:@$topic" ;
@@ -44,12 +42,12 @@ class HydraSvc
         return $this->impl->consume($topic, $call, array($consumeObj,"needStop"), $logger, $timeout);
     }
 
-    public function subscribe($topic, $client, HydraConsume $consumeObj, $logger=null)
+    public function subscribe($topic, $client, Consume $consumeObj, $logger=null)
     {
         if(empty($logger)){
             $logger = new EmptyLogger();
         }
-        $cmd = new HydraCmd;
+        $cmd = new Cmd;
         $cmd->cmd           = "subscribe";
         $cmd->client        = $client;
         $cmd->topic         = $topic;
@@ -61,7 +59,7 @@ class HydraSvc
     public function unSubscribe($topic, $client, $logger=null)
     {
         if(empty($logger)) $logger = new EmptyLogger();
-        $cmd = new HydraCmd;
+        $cmd = new Cmd;
         $cmd->cmd    = "unsubscribe";
         $cmd->client = $client;
         $cmd->topic  = $topic;
