@@ -1,14 +1,13 @@
 <?php
 
 use XCC\HydraConsume ;
-use XCC\HydraDTO ;
 use XCC\HydraCmd ;
 use XCC\HydraSvc ;
 use XCC\Hydra ;
 
 class ConsumeDemo implements HydraConsume
 {
-    public function consume(HydraDTO $dto)
+    public function consume(MsgDTO $dto)
     {
         XLogKit::logger("tc")->debug("job: done","subs-consume") ;
         echo "--------------------\n" ;

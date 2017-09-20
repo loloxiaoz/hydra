@@ -1,10 +1,13 @@
 <?php
 require_once("init.php") ;
-use XCC\HydraConfLoader ;
-XCC\XSdkEnv::init();
+
 $one        = new Dispatcher() ;
-$confs      = HydraConfLoader::getCollectors();
+$confs      = ConfLoader::getCollectors();
 $subscriber = new Subscriber();
 $commonder  = new Commander($subscriber);
-$one->serving($confs[0],$subscriber,$commonder);
-
+if(count($confs) == 1){
+    $one->serving($confs[0],$subscriber,$commonder);
+}
+if(count($confs) == 2){
+    $one->serving($confs[1],$subscriber,$commonder);
+}

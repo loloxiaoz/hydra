@@ -1,3 +1,0 @@
-<?php
-\XCC\XSdkEnv::init() ;
-
