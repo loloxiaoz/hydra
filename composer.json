@@ -1,0 +1,25 @@
+{
+    "name": "xcc/hydra",
+    "description": "promote Beanstalk queue server",
+    "keywords": ["beanstalk", "beanstalkd", "queue", "console", "php"],
+    "type": "project",
+    "authors": [
+        {
+            "name": "xcc"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/xcc/beanstalk_console/issues"
+    },
+    "license": "MIT",
+    "require": {
+        "php" : ">=5.2.0",
+        "monolog/monolog" : "1.0.*",
+        "ext-json" : "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hydra\\": "src/"
+        }
+    }
+}
