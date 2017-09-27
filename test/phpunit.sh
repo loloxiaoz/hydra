@@ -1,4 +1,3 @@
-INI=${PRJ_ROOT}/conf/used/test_php.ini
-PHPUNIT=/usr/local/php/bin/phpunit
-XML=${PRJ_ROOT}/test/phpunit.xml
-/usr/local/php/bin/php -c $INI $PHPUNIT --configuration $XML
+INI=./php.ini
+XML=./phpunit.xml
+php -c $INI /usr/local/php/bin/phpunit --configuration $XML

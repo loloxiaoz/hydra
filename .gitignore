@@ -4,3 +4,5 @@ run.log
 run/
 test/report/
 test/reports/
+vendor/*
+composer.lock

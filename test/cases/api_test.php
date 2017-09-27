@@ -1,36 +1,35 @@
 <?php
 
-use XCC\HydraConsume ;
-use XCC\HydraCmd ;
-use XCC\HydraSvc ;
-use XCC\Hydra ;
+namespace Hydra;
 
-class ConsumeDemo implements Consume
-{
-    public function consume(MsgDTO $dto)
-    {
-        XLogKit::logger("tc")->debug("job: done","subs-consume") ;
-        echo "--------------------\n" ;
-        echo $dto->name  ;
-        echo " " ;
-        echo $dto->data ;
-        echo "\n" ;
-        return true ;
+use PHPUnit_Framework_TestCase;
 
-    }
-    public function needStop($job)
-    {
-           if (!$job )  return true ;
-           return false ;
-    }
-}
+//class ConsumeDemo implements Consume
+//{
+//    public function consume(MsgDTO $dto)
+//    {
+//        XLogKit::logger("tc")->debug("job: done","subs-consume") ;
+//        echo "--------------------\n" ;
+//        echo $dto->name  ;
+//        echo " " ;
+//        echo $dto->data ;
+//        echo "\n" ;
+//        return true ;
+//
+//    }
+//    public function needStop($job)
+//    {
+//           if (!$job )  return true ;
+//           return false ;
+//    }
+//}
 
 class HydraTest  extends PHPUnit_Framework_TestCase
 {
 
     public function testSubscribe()
     {
-        $file = XEnv::get("RUN_PATH") . "/subscriber.dat" ;
+        $file = $GLOBALS["DATA_PATH"] . "/subscribe.dat" ;
         $subs = new Subscriber($file);
         $subs->clear();
         $subs->regist("ping","A") ;
@@ -47,7 +46,7 @@ class HydraTest  extends PHPUnit_Framework_TestCase
     }
     public function testCmd()
     {
-        $file = XEnv::get("RUN_PATH") . "/subscriber4cmd.dat" ;
+        $file = $GLOBALS["DATA_PATH"] . "/subscribe4cmd.dat" ;
         $subs        = new Subscriber($file);
         $subs->clear();
         $commander   = new Commander($subs);
@@ -63,19 +62,13 @@ class HydraTest  extends PHPUnit_Framework_TestCase
         $this->assertEquals($subs->subs("ping"), []);
 
     }
+
     public function testMain()
     {
-
-        // return ;
-
-        $logger= XLogKit::logger("tc") ;
-        $consumer = new HydraSvc();
-
-        $consumer->subscribe("ping","demo1",new ConsumeDemo, XLogKit::logger("main"));
-        sleep(1) ;
+        $consumer = new Consumer();
+        $consumer->subscribe("ping","demo1",new ConsumeDemo);
+        sleep(1);
         Hydra::trigger("ping","Hello") ;
         $consumer->serving($logger,1);
-
     }
-
 }
