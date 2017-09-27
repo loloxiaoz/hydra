@@ -2,27 +2,29 @@
 
 namespace Hydra;
 
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 use PHPUnit_Framework_TestCase;
 
-//class ConsumeDemo implements Consume
-//{
-//    public function consume(MsgDTO $dto)
-//    {
-//        XLogKit::logger("tc")->debug("job: done","subs-consume") ;
-//        echo "--------------------\n" ;
-//        echo $dto->name  ;
-//        echo " " ;
-//        echo $dto->data ;
-//        echo "\n" ;
-//        return true ;
-//
-//    }
-//    public function needStop($job)
-//    {
-//           if (!$job )  return true ;
-//           return false ;
-//    }
-//}
+class ConsumerDemo implements IConsumer
+{
+   public function consume(MsgDTO $dto)
+   {
+       XLogKit::logger("tc")->debug("job: done","subs-consume") ;
+       echo "--------------------\n" ;
+       echo $dto->name  ;
+       echo " " ;
+       echo $dto->data ;
+       echo "\n" ;
+       return true ;
+
+   }
+   public function needStop($job)
+   {
+          if (!$job )  return true ;
+          return false ;
+   }
+}
 
 class HydraTest  extends PHPUnit_Framework_TestCase
 {
@@ -30,7 +32,7 @@ class HydraTest  extends PHPUnit_Framework_TestCase
     public function testSubscribe()
     {
         $file = $GLOBALS["DATA_PATH"] . "/subscribe.dat" ;
-        $subs = new Subscriber($file);
+        $subs = new Manager($file);
         $subs->clear();
         $subs->regist("ping","A") ;
         $this->assertEquals($subs->subs("ping"), ["A"]);
@@ -47,7 +49,7 @@ class HydraTest  extends PHPUnit_Framework_TestCase
     public function testCmd()
     {
         $file = $GLOBALS["DATA_PATH"] . "/subscribe4cmd.dat" ;
-        $subs        = new Subscriber($file);
+        $subs        = new Manager($file);
         $subs->clear();
         $commander   = new Commander($subs);
         $obj         = new Cmd() ;
@@ -65,10 +67,12 @@ class HydraTest  extends PHPUnit_Framework_TestCase
 
     public function testMain()
     {
-        $consumer = new Consumer();
-        $consumer->subscribe("ping","demo1",new ConsumeDemo);
+        $logger     = new Logger('name');
+        $logger->pushHandler(new StreamHandler($GLOBALS["PRJ_ROOT"], Logger::WARNING));
+        $consumer   = new Consumer($logger);
+        $consumer->subscribe("ping","demo1",new ConsumerDemo);
         sleep(1);
-        Hydra::trigger("ping","Hello") ;
+        Client::trigger("ping","Hello") ;
         $consumer->serving($logger,1);
     }
 }

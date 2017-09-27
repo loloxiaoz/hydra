@@ -2,9 +2,12 @@
 
 namespace Hydra;
 
+use Monolog\Logger;
+use Pheanstalk\Pheanstalk;
+
 class Dispatcher
 {
-    public function __construct(ILogger $logger)
+    public function __construct(Logger $logger)
     {
         $this->logger = $logger;
     }
@@ -15,7 +18,7 @@ class Dispatcher
         $conf = ConfLoader::getSubConf($topic);
         if(!isset($queues[$conf])){
             list($host,$port) = explode(':',$conf);
-            $queues[$conf]    = new Pheanstalk_Pheanstalk($host, $port, Constants::TIMEOUT);
+            $queues[$conf]    = new Pheanstalk($host, $port, Constants::TIMEOUT);
         }
         return $queues[$conf];
     }
@@ -23,10 +26,10 @@ class Dispatcher
     static private function getIns($conf)
     {
         list($host,$port) = explode(':', $conf);
-        return new Pheanstalk_Pheanstalk($host, $port, Constants::TIMEOUT);
+        return new Pheanstalk($host, $port, Constants::TIMEOUT);
     }
 
-    public function doCmd($srcQ, Subscriber $subscriber, Commander $commander)
+    public function doCmd($srcQ, Commander $commander)
     {
         while(true){
             $cmdJob = $srcQ->reserveFromTube(Constants::TOPIC_CMD, 0);
@@ -41,7 +44,7 @@ class Dispatcher
         }
     }
 
-    public function doEvent($srcQ, Subscriber $subscriber)
+    public function doEvent($srcQ, Manager $manager)
     {
         $count = 0;
         $begin = microtime(true);
@@ -59,7 +62,7 @@ class Dispatcher
                     continue ;
                 }
                 $topic = $dataObj->name ;
-                $subs  = $subscriber->subs($topic) ;
+                $subs  = $manager->subs($topic) ;
                 foreach($subs as $client){
                     $dstTopic = "$topic-$client" ;
                     $this->logger->debug($job->getId() . " put to $dstTopic", __class__) ;
@@ -81,13 +84,13 @@ class Dispatcher
         $this->logger->debug( __method__ . " use : $usetime (s)", __class__);
     }
 
-    public function serving($src, Subscriber $subscriber, Commander $commander)
+    public function serving($src, Manager $manager, Commander $commander)
     {
         $this->logger->info("start serving for $src", __class__);
         $srcQ = static::getIns($src);
         while(true){
-            $this->doCmd($srcQ, $subscriber, $commander);
-            $this->doEvent($srcQ, $subscriber);
+            $this->doCmd($srcQ, $commander);
+            $this->doEvent($srcQ, $manager);
         }
         $this->logger->info("end serving", __class__);
     }

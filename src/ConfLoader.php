@@ -36,7 +36,7 @@ class ConfLoader
     static public function loadConf()
     {
         static $confs = array();
-        if(empty(static::$confs)){
+        if(empty($confs)){
             $confPath = $GLOBALS["PRJ_ROOT"] ."config.json";
             $strs = file_get_contents($confPath);
             $confs = @json_decode($strs,true);
@@ -44,7 +44,7 @@ class ConfLoader
                 throw new \RuntimeException("config file is bad");
             }
         }
-        return static::$confs;
+        return $confs;
     }
 
     static public function getSubscribers()

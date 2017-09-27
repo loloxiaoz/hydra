@@ -4,18 +4,18 @@ namespace Hydra;
 
 class Commander
 {
-    public function __construct(Subscriber $subscriber)
+    public function __construct(Manager $manager)
     {
-        $this->subscriber = $subscriber;
+        $this->manager = $manager;
     }
 
     public function doCmd(Cmd $cmd)
     {
         if($cmd->cmd == "subscribe"){
-            $this->subscriber->regist($cmd->topic,$cmd->client);
+            $this->manager->regist($cmd->topic,$cmd->client);
         }
         if($cmd->cmd == "unsubscribe"){
-            $this->subscriber->unRegist($cmd->topic,$cmd->client);
+            $this->manager->unRegist($cmd->topic,$cmd->client);
         }
     }
 }

@@ -4,6 +4,6 @@ namespace Hydra;
 
 interface IConsumer
 {
-    public function cmd(Cmd $cmd);
-    public function consume($topic, $workFun, $stopFun, $timeout=5);
+    public function consume(MsgDTO $dto);
+    public function needStop($job);
 }

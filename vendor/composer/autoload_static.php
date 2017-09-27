@@ -19,6 +19,10 @@ class ComposerStaticInit2acd56f9cbdf9826bac942cb619447fe
         array (
             'Symfony\\Component\\Yaml\\' => 23,
         ),
+        'P' => 
+        array (
+            'Pheanstalk\\' => 11,
+        ),
         'H' => 
         array (
             'Hydra\\' => 6,
@@ -44,6 +48,10 @@ class ComposerStaticInit2acd56f9cbdf9826bac942cb619447fe
         'Symfony\\Component\\Yaml\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/yaml',
+        ),
+        'Pheanstalk\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/pda/pheanstalk/src',
         ),
         'Hydra\\' => 
         array (

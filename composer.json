@@ -16,6 +16,7 @@
         "php" : ">=5.2.0",
         "monolog/monolog" : "1.0.*",
         "phpunit/phpunit" : ">5.4.0",
+        "pda/pheanstalk"  : ">3.0",
         "ext-json" : "*"
     },
     "autoload": {

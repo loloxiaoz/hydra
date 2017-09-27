@@ -2,19 +2,21 @@
 
 namespace Hydra;
 
+use Monolog\Logger;
+
 class Consumer
 {
-    private $consumeTopic =  null ;
+    private $topic =  null ;
     private $consumeObj   =  null ;
 
-    public function __construct(ILogger $logger)
+    public function __construct(Logger $logger)
     {
         $this->impl = new BStalk($logger);
     }
 
     public function serving($timeout = 5)
     {
-        $topic      = $this->consumeTopic;
+        $topic      = $this->topic;
         $consumeObj = $this->consumeObj;
         $tag        = "consume:@$topic";
         $call       = function ($data)use($consumeObj,$tag){
@@ -38,7 +40,7 @@ class Consumer
         $cmd->client        = $client;
         $cmd->topic         = $topic;
         $this->impl->cmd($cmd);
-        $this->consumeTopic = "$topic-$client";
+        $this->topic = "$topic-$client";
         $this->consumeObj   = $consumeObj;
     }
 
@@ -49,7 +51,7 @@ class Consumer
         $cmd->client        = $client;
         $cmd->topic         = $topic;
         $this->impl->cmd($cmd);
-        $this->consumeTopic = null;
+        $this->topic = null;
         $this->consumeObj   = null;
     }
 }

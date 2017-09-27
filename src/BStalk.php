@@ -2,9 +2,13 @@
 
 namespace Hydra;
 
-class BStalk implements ICollector, IConsumer
+use Monolog\Logger;
+use Pheanstalk\Pheanstalk;
+use Pheanstalk\Exception\ConnectionException;
+
+class BStalk
 {
-    public function __construct(ILogger $logger)
+    public function __construct(Logger $logger)
     {
         $this->logger = $logger;
     }
@@ -18,7 +22,7 @@ class BStalk implements ICollector, IConsumer
                 $jobId = $queue->putInTube($topic, $data, $priority=1024, $delay, $ttl);
                 $this->logger->debug("send $jobId @$topic", __method__);
                 return $jobId;
-            }catch(Pheanstalk_Exception_ConnectionException $e){
+            }catch(ConnectionException $e){
                 $this->logger->error($e->getMessage, __method__);
             }
             $count--;
@@ -34,7 +38,7 @@ class BStalk implements ICollector, IConsumer
             try{
                 $queue->putInTube(Constants::TOPIC_CMD, json_encode($cmd) );
                 $bSuc = true ;
-            }catch(Pheanstalk_Exception_ConnectionException $e){
+            }catch(ConnectionException $e){
                 $this->logger->error($e->getMessage(),__method__) ;
             }
         }
@@ -51,8 +55,8 @@ class BStalk implements ICollector, IConsumer
             foreach($confs as $conf){
                 list($host,$port) = explode(':',$conf);
                 try {
-                    array_push($queues ,new \Pheanstalk_Pheanstalk($host, $port, Constants::TIMEOUT));
-                }catch(\Pheanstalk_Exception_ConnectionException $e){
+                    array_push($queues ,new Pheanstalk($host, $port, Constants::TIMEOUT));
+                }catch(ConnectionException $e){
                     $logger->error($e->getMessage(), __method__) ;
                 }
             }
@@ -79,7 +83,7 @@ class BStalk implements ICollector, IConsumer
         $this->logger->debug("topic [$topic] use $conf");
         if(!isset($queues[$conf])){
             list($host,$port) = explode(':', $conf);
-            $queues[$conf]    = new \Pheanstalk_Pheanstalk($host, $port, Constants::TIMEOUT);
+            $queues[$conf]    = new Pheanstalk($host, $port, Constants::TIMEOUT);
         }
         return $queues[$conf] ;
     }
