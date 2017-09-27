@@ -21,7 +21,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Hydra\\": "src/"
+            "Hydra\\": ["src/","sdk/","test/cases"]
         }
     }
 }

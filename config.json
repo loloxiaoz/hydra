@@ -1,10 +1,11 @@
 {
+    "beanstalkd" : "/usr/local/beanstalkd/bin/beanstalkd",
     "hydra" : {
         "events" : [ "ping" ]  ,
         "collectors" : ["127.0.0.1:11400"] ,
         "subscribers" : [
-        { "max":  "0x8FFFFFFF", "addr": "10.25.177.169:11401" },
-        { "max" : "0xFFFFFFFF", "addr": "10.25.177.169:11402" }
+        { "max" : "0x8FFFFFFF", "addr": "127.0.0.1:11401" },
+        { "max" : "0xFFFFFFFF", "addr": "127.0.0.1:11402" }
         ]
     },
     "queue" : {

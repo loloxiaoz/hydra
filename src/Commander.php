@@ -9,7 +9,7 @@ class Commander
         $this->manager = $manager;
     }
 
-    public function doCmd(Cmd $cmd)
+    public function doCmd($cmd)
     {
         if($cmd->cmd == "subscribe"){
             $this->manager->regist($cmd->topic,$cmd->client);

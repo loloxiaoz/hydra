@@ -2,16 +2,15 @@
 
 namespace Hydra;
 
-use Monolog\Logger;
-
 class Consumer
 {
-    private $topic =  null ;
-    private $consumeObj   =  null ;
+    private $topic;
+    private $consumeObj;
 
-    public function __construct(Logger $logger)
+    public function __construct(ILogger $logger)
     {
-        $this->impl = new BStalk($logger);
+        $this->logger   = $logger;
+        $this->impl     = new BStalk($logger);
     }
 
     public function serving($timeout = 5)
@@ -21,7 +20,7 @@ class Consumer
         $tag        = "consume:@$topic";
         $call       = function ($data)use($consumeObj,$tag){
             $host       = gethostname();
-            $this->$logger->debug("job data:" . $data, $tag);
+            $this->logger->debug("job data:" . $data, $tag);
             $obj        = MsgDTO::fromJson($data);
             if(empty($obj)){
                 $this->logger->warn("bad MsgDTO",$tag);

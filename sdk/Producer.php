@@ -3,7 +3,6 @@
 namespace Hydra;
 
 use Monolog\Logger;
-use Monolog\Handler\StreamHandler;
 
 class Producer
 {
@@ -13,8 +12,7 @@ class Producer
     static private function check($topic)
     {
         if(empty(static::$impl)){
-            static::$logger = new Logger('client');
-            static::$logger->pushHandler(new StreamHandler($GLOBALS["PRJ_ROOT"], Logger::WARNING));
+            static::$logger = new MonoLogger("producer",$GLOBALS["PRJ_ROOT"]."all.log",Logger::WARNING);
             static::$impl   = new BStalk(static::$logger);
         }
         $events = ConfLoader::getEvents();
@@ -29,6 +27,6 @@ class Producer
         $dto       = MsgDTO::create($topic, $data, $tag, $delay);
         $dto->encode();
         $json_data = json_encode($dto);
-        return $impl->trigger(Constants::TOPIC_EVENT, $json_data, $delay, $ttl);
+        return static::$impl->trigger(Constants::TOPIC_EVENT, $json_data, $delay, $ttl);
     }
 }

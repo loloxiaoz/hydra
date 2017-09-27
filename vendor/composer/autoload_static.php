@@ -56,6 +56,8 @@ class ComposerStaticInit2acd56f9cbdf9826bac942cb619447fe
         'Hydra\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+            1 => __DIR__ . '/../..' . '/sdk',
+            2 => __DIR__ . '/../..' . '/test/cases',
         ),
         'Doctrine\\Instantiator\\' => 
         array (

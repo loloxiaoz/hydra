@@ -1,7 +1,8 @@
-<phpunit bootstrap="bootstrap.php" colors="true" >
+<phpunit bootstrap="../bootstrap.php" colors="true" >
     <testsuites>
         <testsuite name = "cases">
-            <directory suffix = "api_test.php">cases</directory>
+            <!-- <directory suffix = "MainTest.php">cases</directory> -->
+            <directory suffix = "PerformanceTest.php">cases</directory>
         </testsuite>
     </testsuites>
 </phpunit>

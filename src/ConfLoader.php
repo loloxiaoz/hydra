@@ -50,7 +50,13 @@ class ConfLoader
     static public function getSubscribers()
     {
         $confs = static::loadConf();
-        return $confs["hydra"]["subscibes"];
+        return $confs["hydra"]["subscribers"];
+    }
+
+    static public function getBeanstalkd()
+    {
+        $confs = static::loadConf();
+        return $confs["beanstalkd"];
     }
 
     static public function getCollectors()

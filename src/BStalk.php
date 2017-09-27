@@ -2,13 +2,12 @@
 
 namespace Hydra;
 
-use Monolog\Logger;
 use Pheanstalk\Pheanstalk;
 use Pheanstalk\Exception\ConnectionException;
 
 class BStalk
 {
-    public function __construct(Logger $logger)
+    public function __construct(ILogger $logger)
     {
         $this->logger = $logger;
     }
@@ -76,11 +75,11 @@ class BStalk
         return $ins;
     }
 
-    static private function subIns($topic)
+    static private function subIns($topic,$logger)
     {
         static $queues = array();
         $conf          = ConfLoader::getSubConf($topic);
-        $this->logger->debug("topic [$topic] use $conf");
+        $logger->debug("topic [$topic] use $conf");
         if(!isset($queues[$conf])){
             list($host,$port) = explode(':', $conf);
             $queues[$conf]    = new Pheanstalk($host, $port, Constants::TIMEOUT);
@@ -91,7 +90,7 @@ class BStalk
     public function consume($topic, $workFun, $stopFun, $timeout=5)
     {
         $tag    = "consume@$topic";
-        $queue  = static::subIns($topic);
+        $queue  = static::subIns($topic,$this->logger);
         while(true){
             $this->logger->info("watch $topic", "consume");
             $job    = $queue->watch($topic)->ignore('default')->reserve($timeout);

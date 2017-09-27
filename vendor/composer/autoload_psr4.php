@@ -10,7 +10,7 @@ return array(
     'Webmozart\\Assert\\' => array($vendorDir . '/webmozart/assert/src'),
     'Symfony\\Component\\Yaml\\' => array($vendorDir . '/symfony/yaml'),
     'Pheanstalk\\' => array($vendorDir . '/pda/pheanstalk/src'),
-    'Hydra\\' => array($baseDir . '/src'),
+    'Hydra\\' => array($baseDir . '/src', $baseDir . '/sdk', $baseDir . '/test/cases'),
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
 );

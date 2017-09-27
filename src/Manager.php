@@ -18,7 +18,7 @@ class Manager
         file_put_contents($this->dataFile, $data);
     }
 
-    public function __construct($datafile)
+    public function __construct($datafile=null)
     {
         $this->topics   = array();
         $this->dataFile = $datafile;

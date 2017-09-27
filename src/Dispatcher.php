@@ -2,12 +2,11 @@
 
 namespace Hydra;
 
-use Monolog\Logger;
 use Pheanstalk\Pheanstalk;
 
 class Dispatcher
 {
-    public function __construct(Logger $logger)
+    public function __construct(ILogger $logger)
     {
         $this->logger = $logger;
     }
@@ -84,10 +83,10 @@ class Dispatcher
         $this->logger->debug( __method__ . " use : $usetime (s)", __class__);
     }
 
-    public function serving($src, Manager $manager, Commander $commander)
+    public function serving($conf, Manager $manager, Commander $commander)
     {
         $this->logger->info("start serving for $src", __class__);
-        $srcQ = static::getIns($src);
+        $srcQ = static::getIns($conf);
         while(true){
             $this->doCmd($srcQ, $commander);
             $this->doEvent($srcQ, $manager);
