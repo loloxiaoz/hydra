@@ -1,5 +1,9 @@
-todo : 架构图
-组件 monolog composer pda/pheanstalk phpunit
+hydra
+==========
+
+基于beanstalk封装的php分布式发布订阅消息系统,完全去除了对rigger与pylon的依赖
+依赖的组件有pheanstalk、monolog、composer、phpunit等
+
 ## 项目目录组织
 
 ### data
