@@ -2,7 +2,9 @@ hydra
 ==========
 
 基于beanstalk封装的php分布式发布订阅消息系统,完全去除了对rigger与pylon的依赖
-只依赖的组件有pheanstalk、monolog、composer、phpunit等
+
+只依赖pheanstalk、monolog、composer、phpunit等组件
+
 
 ## 项目目录组织
 
