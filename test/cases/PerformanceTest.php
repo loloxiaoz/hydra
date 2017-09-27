@@ -19,11 +19,11 @@ class PerformanceTest extends PHPUnit_Framework_TestCase
                 Producer::trigger("ping",$i);
             }
         }else{
-            $logger   = new MonoLogger("test", $GLOBALS["PRJ_ROOT"]."all.log", Logger::WARNING);
+            $logger   = new MonoLogger("test", $GLOBALS["PRJ_ROOT"]."all.log", Logger::INFO);
             $consumer = new Consumer($logger);
             $consumer->subscribe("ping", "Hping", new ConsumerPing);
             sleep(1);
-            $consumer->serving(5);
+            $consumer->serving(10);
             pcntl_waitpid($pid, $status);
         }
     }

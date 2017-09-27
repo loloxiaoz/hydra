@@ -1,9 +1,10 @@
 _prj/*
 conf/
-run.log
 run/
 test/report/
 test/reports/
 vendor/*
 composer.lock
 data/*
+bin/*.out
+*.log

@@ -45,7 +45,7 @@ class MainTest  extends PHPUnit_Framework_TestCase
 
     public function testMain()
     {
-        $logger     = new MonoLogger("test",$GLOBALS["PRJ_ROOT"]."all.log",Logger::WARNING);
+        $logger     = new MonoLogger("test",$GLOBALS["PRJ_ROOT"]."all.log",Logger::INFO);
         $consumer   = new Consumer($logger);
         $consumer->subscribe("ping","demo1",new ConsumerDemo);
         sleep(1);
