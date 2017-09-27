@@ -1,3 +1,5 @@
+todo : 架构图
+组件 monolog composer pda/pheanstalk phpunit
 ## 项目目录组织
 
 ### data
