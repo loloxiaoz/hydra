@@ -1,15 +1,15 @@
 {
-    "name": "xcc/hydra",
+    "name": "hydra",
     "description": "promote Beanstalk queue server",
     "keywords": ["beanstalk", "beanstalkd", "queue", "console", "php"],
     "type": "project",
     "authors": [
         {
-            "name": "xcc"
+            "name": "loloxiaoz"
         }
     ],
     "support": {
-        "issues": "https://github.com/xcc/beanstalk_console/issues"
+        "issues": "https://github.com/loloxiaoz/hydra.git"
     },
     "license": "MIT",
     "require": {
