@@ -1,3 +1,5 @@
+#项目目录组织
+
 ## data
 存放数据,其中hydra存放binlog文件,subscribe存放订阅文件
 
