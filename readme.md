@@ -6,7 +6,7 @@ sdk文件，供需要发事件的client使用
 * MsgDTO        消息传输对象
 * Producer      消息产生者
 
-##
+## src
 * BStalk beanstalk  实现类
 * Cmd           命令对象
 * Commander     命令类
@@ -16,8 +16,6 @@ sdk文件，供需要发事件的client使用
 * Dispather     消息分发者
 * Manager       订阅关系管理类
 * Monologger    日志实现类
-## src
-
 
 ## test
 测试用例
